@@ -43,7 +43,7 @@ submit.addEventListener('click', () => {
       tasks = [];
     }
     const task = {
-      index: tasks.length,
+      index: tasks.length + 1,
       descripton: userTask,
       completed: false,
     };
@@ -65,7 +65,7 @@ taskInput.addEventListener('keyup', (e) => {
         tasks = [];
       }
       const task = {
-        index: tasks.length,
+        index: tasks.length + 1,
         descripton: userTask,
         completed: false,
       };
@@ -80,8 +80,11 @@ taskInput.addEventListener('keyup', (e) => {
   }
 });
 
-window.del = (deletId) => {
-  tasks.splice(deletId, 1);
+window.del = (id) => {
+  tasks = tasks.filter((task) => task.index !== id);
+  tasks.forEach((e, i) => {
+    e.index = i + 1;
+  });
   localStorage.setItem('task-list', JSON.stringify(tasks));
   addElemToPage();
 };
