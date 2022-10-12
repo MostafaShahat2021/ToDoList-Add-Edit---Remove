@@ -1,21 +1,18 @@
 import './style.css';
 
-// const input = document.getElementById('task');
 const submit = document.querySelector('.add-btn');
 const tasksDiv = document.querySelector('.tasks');
 const taskInput = document.querySelector('.add-task input');
-// console.log(taskInput);
+
 let editId;
 let isEditTask = false;
 let tasks = JSON.parse(localStorage.getItem('task-list'));
 
 window.editTask = (taskId, taskDescripton) => {
-  // console.log(taskId, taskDescripton);
   editId = taskId;
   isEditTask = true;
   taskInput.value = taskDescripton;
 };
-// editTask();
 
 const addElemToPage = () => {
   let div = '';
@@ -85,8 +82,6 @@ taskInput.addEventListener('keyup', (e) => {
 
 window.del = (deletId) => {
   tasks.splice(deletId, 1);
-  // save updated todos to local storage
   localStorage.setItem('task-list', JSON.stringify(tasks));
   addElemToPage();
 };
-// del();
