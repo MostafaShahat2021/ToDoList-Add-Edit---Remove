@@ -9,21 +9,13 @@ let editId;
 let isEditTask = false;
 let tasks = JSON.parse(localStorage.getItem('task-list'));
 
-const editTask = (taskId, taskDescripton) => {
+window.editTask = (taskId, taskDescripton) => {
   // console.log(taskId, taskDescripton);
   editId = taskId;
   isEditTask = true;
   taskInput.value = taskDescripton;
 };
 // editTask();
-
-const del = (deletId) => {
-  tasks.splice(deletId, 1);
-  // save updated todos to local storage
-  localStorage.setItem('task-list', JSON.stringify(tasks));
-  addElemToPage();
-};
-// del();
 
 const addElemToPage = () => {
   let div = '';
@@ -90,3 +82,11 @@ taskInput.addEventListener('keyup', (e) => {
     addElemToPage();
   }
 });
+
+window.del = (deletId) => {
+  tasks.splice(deletId, 1);
+  // save updated todos to local storage
+  localStorage.setItem('task-list', JSON.stringify(tasks));
+  addElemToPage();
+};
+// del();
