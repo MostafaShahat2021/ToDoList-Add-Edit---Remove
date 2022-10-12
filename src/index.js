@@ -9,7 +9,7 @@ let isEditTask = false;
 let tasks = JSON.parse(localStorage.getItem('task-list'));
 
 window.editTask = (taskId, taskDescripton) => {
-  editId = taskId;
+  editId = taskId - 1;
   isEditTask = true;
   taskInput.value = taskDescripton;
 };
