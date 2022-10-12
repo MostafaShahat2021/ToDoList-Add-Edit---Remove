@@ -17,15 +17,15 @@ window.editTask = (taskId, taskDescripton) => {
 const addElemToPage = () => {
   let div = '';
   if (tasks) {
-    tasks.forEach((task, index) => {
+    tasks.forEach((task) => {
       div += `
       <div class='task' data-id='task.id'>
-        <input id="${index}" class='checkbox' onclick='updateCompleted(this)' type="checkbox">
-        <p id='${index}'class='text' contenteditable="false">${task.descripton}</p>
-        <button type="button"  id="${index}" class='edit' >
-        <span onclick='editTask(${index}, "${task.descripton}")' class="material-symbols-outlined">edit</span>
+        <input id="${task.index}" class='checkbox' onclick='updateCompleted(this)' type="checkbox">
+        <p id='${task.index}'class='text' contenteditable="false">${task.descripton}</p>
+        <button type="button"  id="${task.index}" class='edit' >
+        <span onclick='editTask(${task.index}, "${task.descripton}")' class="material-symbols-outlined">edit</span>
         </button>
-        <button type="button"  id="${index}" class='del' onclick='del(${index})' >
+        <button type="button"  id="${task.index}" class='del' onclick='del(${task.index})' >
         <span class='material-symbols-outlined del'>delete</span>
         </button>
         </div>
@@ -43,7 +43,7 @@ submit.addEventListener('click', () => {
       tasks = [];
     }
     const task = {
-      id: Date.now(),
+      index: tasks.length,
       descripton: userTask,
       completed: false,
     };
@@ -65,7 +65,7 @@ taskInput.addEventListener('keyup', (e) => {
         tasks = [];
       }
       const task = {
-        id: Date.now(),
+        index: tasks.length,
         descripton: userTask,
         completed: false,
       };
